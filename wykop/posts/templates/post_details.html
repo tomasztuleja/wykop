@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load embed_video_tags %}
+
+{% block content %}
+    <h1>{{ post }}</h1>
+
+    <p class="
+        {% if post.score >= 0 %}
+            good
+        {% else %}
+            bad
+        {% endif %}
+    ">
+        {{ post.score }}
+    <p>
+
+    {% include 'post_vote_form.html' %}
+
+    <p>{{ post.text }}</p>
+
+    {% if not user.is_authenticated and post.nsfw %}
+        <button class="nsfw-button" data-id="{{ post.pk }}">nsfw</button>
+        <div class="nsfw-content" data-id="{{ post.pk }}">
+    {% else %}
+        <div>
+    {% endif %}
+
+        {% if post.image %}
+            <div>
+                <img class="post_image" src="{{ post.image.url }}">
+            </div>
+        {% endif %}
+        {% if post.video %}
+            {% video post.video '800x600' %}
+        {% endif %}
+
+    </div>
+
+
+    <em>{{ post.created }}</em>
+
+    {% if prev_post %}
+        <p>
+            <a href="{% url 'posts:details' prev_post.pk %}">poprzedni</a>
+        </p>
+    {% endif %}
+    {% if next_post %}
+        <p>
+            <a href="{% url 'posts:details' next_post.pk %}">następny</a>
+        </p>
+    {% endif %}
+
+    {% if user == post.author %}
+        <a href="{% url 'posts:edit' post.pk %}">Edytuj</a>
+    {% endif %}
+
+    <a href="{% url 'posts:list' %}">powrót</a>
+{% endblock %}

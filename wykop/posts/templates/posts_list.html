@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load url_utils %}
+
+<style>
+    h1 {
+        color: blue;
+    }
+</style>
+
+
+{% block content %}
+
+    <p>
+        <a href="{% url 'posts:create' %}">
+            Dodaj nowy post
+        </a>
+    </p>
+
+    <form method="get">
+        <input 
+            type="search" 
+            name="search" 
+            placeholder="Czego szukasz" 
+            value="{{ search_value|default_if_none:"" }}">
+        <input type="submit" value="Szukaj">
+    </form>
+
+
+    {% for post in posts %}
+        <a href="{% url 'posts:details' post.pk %}">
+            <h2>{{ post }}</h2>
+        </a>
+        {% include 'post_vote_form.html' %}
+
+        {{ post.text }}<br>
+        {{ post.score }}<br>
+        {{ post.created }}<br>
+        {{ post.author }}<br>
+        <hr>
+    {% endfor %}
+
+    {% if is_paginated %}
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li><a href="?{% url_replace 'page' page_obj.previous_page_number %}">&laquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in paginator.page_range %}
+            {% if page_obj.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+                <li><a href="?{% url_replace 'page' i %}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <li><a href="?{% url_replace 'page' page_obj.next_page_number %}">&raquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+    </ul>
+    {% endif %}
+
+
+{% endblock %}

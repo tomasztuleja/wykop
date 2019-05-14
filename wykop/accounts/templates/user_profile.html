@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+  {{ profile }}
+
+  <ul>
+    {% for post in profile.posts.all %}
+      <li> <a href="{{ post.get_absolute_url }}"> {{ post }} </a> </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% load static %}
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static "styles.css" %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="{% static 'scripts.js' %}"></script>
+</head>
+
+<body>
+
+    {% include 'profile_box.html' %}
+
+    <h1>Mój wykop</h1>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+</html>

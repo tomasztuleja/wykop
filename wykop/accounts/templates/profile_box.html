@@ -1,0 +1,8 @@
+    <div class="profile">
+        {% if user.is_authenticated %}
+            {{ user }}
+            <a href="{% url 'accounts:logout' %}">wyloguj się</a>
+        {% else %}
+            <a href="{% url 'accounts:login' %}">zaloguj się</a>
+        {% endif %}
+    </div>

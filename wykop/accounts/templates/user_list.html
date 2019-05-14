@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+  {% for user in users %}
+
+    <h4>{{ user }}</h4>
+    <p>
+      Liczba postów: {{ user.posts.count }}
+    </p>
+    <hr>
+
+  {% endfor %}
+
+{% endblock %}

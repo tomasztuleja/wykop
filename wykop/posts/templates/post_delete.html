@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<form method="post">{% csrf_token %}
+    <p>Czy na pewno chcesz usunąć post "{{ post }}"?</p>
+    <input type="submit" value="Tak">
+    <a href="{% url 'posts:list' %}">Jednak nie.</a>
+</form>
+
+{% endblock %}

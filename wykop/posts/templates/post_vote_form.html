@@ -1,0 +1,19 @@
+{% load vote %}
+
+{% user_vote_for_post as user_vote %}
+
+{% if post.author != user and user_vote == 0 %}
+
+    <form method="post" action="{% url 'posts:vote' post.pk %}">
+        {% csrf_token %}
+        <input type="hidden" name="value" value="1">
+        <input type="submit" value="+">
+    </form>
+
+    <form method="post" action="{% url 'posts:vote' post.pk %}">
+        {% csrf_token %}
+        <input type="hidden" name="value" value="-1">
+        <input type="submit" value="-">
+    </form>
+
+{% endif %}

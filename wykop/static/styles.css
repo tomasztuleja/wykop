@@ -1,0 +1,22 @@
+.good {
+  background-color: lightgreen;
+}
+.bad {
+  background-color: red;
+}
+h1 {
+  color: blue;
+}
+
+.profile {
+  float: right;
+}
+
+.post_image {
+  max-height: 200px;
+  max-width: 200px;
+}
+
+.nsfw-content {
+  display: none;
+}
