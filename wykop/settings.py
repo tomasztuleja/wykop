@@ -156,3 +156,6 @@ LOGOUT_REDIRECT_URL = 'posts:list'
 LOGIN_URL = 'accounts:login'
 
 CURRENT_TOS_VERSION = 3
+
+import django_heroku
+django_heroku.settings(locals())
