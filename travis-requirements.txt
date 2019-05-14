@@ -1,0 +1,7 @@
+django
+django-extensions
+django-embed-video
+djangorestframework
+Pillow
+gunicorn
+

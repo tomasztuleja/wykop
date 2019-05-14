@@ -6,6 +6,6 @@ python:
 env:
  -DJANGO=2.2.1
 install:
- - pip install -r requirements.txt
+ - pip install -r travis-requirements.txt
 script:
  - python manage.py test

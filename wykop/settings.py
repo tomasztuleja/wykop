@@ -157,5 +157,9 @@ LOGIN_URL = 'accounts:login'
 
 CURRENT_TOS_VERSION = 3
 
-import django_heroku
-django_heroku.settings(locals())
+try:
+	import django_heroku
+	django_heroku.settings(locals())
+except ImportError:
+	pass
+
